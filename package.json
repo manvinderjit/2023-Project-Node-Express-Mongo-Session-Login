@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A project created for exhibiting session-based login in a NodeJS, Express, and MongoDB app with EJS view engine and Mongoose ODM.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
