@@ -14,9 +14,28 @@ const staticsPath = fileURLToPath(new URL('public', import.meta.url));
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
+app.use(
+    session({
+        secret: process.env.ACCESS_TOKEN_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        name: process.env.SID,
+        cookie: { sameSite: true },
+    }),
+);
+
 app.use(express.json());
 app.use(express.static(staticsPath));
 app.use(express.urlencoded({ extended: true }));
+
+// Makes userId available for all routes
+app.use((req, res, next) =>{
+    const { userId, authorized } = req.session;
+    if(userId && authorized){
+        res.locals.user = userId;
+    }
+    next();
+});
 
 app.use('/', indexRouter);
 

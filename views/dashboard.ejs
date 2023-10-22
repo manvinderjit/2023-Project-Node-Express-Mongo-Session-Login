@@ -1,0 +1,10 @@
+<%- include('./partials/header'); -%>
+
+    <h1><%= title %></h1>
+    <p>Welcome to the home page, <%= username %> !</p>
+
+    <form method="POST" action="/logout">
+        <button>Logout</button>        
+    </form>
+
+<%- include('./partials/footer'); -%>
