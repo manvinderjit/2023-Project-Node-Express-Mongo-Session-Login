@@ -9,8 +9,9 @@ import {
     logoutEmployee,
 } from '../controllers/authenticateController.js';
 import { registerEmployee } from '../controllers/registrationController.js';
+import nocache from '../middleware/noCacheMw.js';
 
-indexRouter.get('/', redirectToLogin, (req, res) => {
+indexRouter.get('/', redirectToLogin, nocache, (req, res) => {
     res.render('dashboard', {
         title: 'Dashboard',
         username: res.locals.user,

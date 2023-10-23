@@ -1,8 +1,15 @@
+import Employee from "../models/employees.js";
+import bcrypt from 'bcrypt';
+
 const loginEmployee = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
-        if (email == 'email@abc.com' && password == 'password') {
+        // TODO: Validate email
+
+        const employee = await Employee.findOne({ email }).exec();
+
+        if (employee && (await bcrypt.compareSync(password, employee.password))) {
             req.session.userId = email;
             req.session.authorized = true;
             res.redirect('/');
@@ -12,21 +19,6 @@ const loginEmployee = async (req, res, next) => {
                 email: req.body.email,
                 error: 'Error: Check email and/or password',
             });
-        }
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-const registerEmployee = async (req, res, next) => {
-    try {
-        const { email, password } = req.body;
-        
-
-        if (email && password) {
-            // TODO: Check if user exists in the database
-            // TODO: Register user in database if doesn't exist
-            // TODO: Redired to '/register', Send error message : "User already exists"
         }
     } catch (error) {
         console.error(error);
