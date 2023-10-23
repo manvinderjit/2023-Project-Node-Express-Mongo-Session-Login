@@ -8,8 +8,7 @@ const loginEmployee = async (req, res, next) => {
             password == 'password'
         ) {
             req.session.userId = username;                
-            req.session.authorized = true;
-            console.log(req.session);
+            req.session.authorized = true;            
             res.redirect('/');
         } else {
             res.render('login', {

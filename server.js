@@ -2,6 +2,8 @@ import express from 'express';
 import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
+
 import errorHandler from './middleware/errorMw.js';
 import indexRouter from './routes/index.js';
 
@@ -20,7 +22,11 @@ app.use(
         resave: false,
         saveUninitialized: false,
         name: process.env.SID,
-        cookie: { sameSite: true },
+        store: MongoStore.create({
+            mongoUrl: 'mongodb://localhost:27017/my-manager',
+            autoRemove: 'native',
+            ttl: 60, // 60 seconds
+        }),
     }),
 );
 
