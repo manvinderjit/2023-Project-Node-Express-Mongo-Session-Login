@@ -21,7 +21,7 @@ const loginEmployee = async (req, res, next) => {
 const registerEmployee = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        //TODO: Validate email and password
+        
 
         if (email && password) {
             // TODO: Check if user exists in the database

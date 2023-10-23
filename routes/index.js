@@ -8,6 +8,7 @@ import {
     loginEmployee,
     logoutEmployee,
 } from '../controllers/authenticateController.js';
+import { registerEmployee } from '../controllers/registrationController.js';
 
 indexRouter.get('/', redirectToLogin, (req, res) => {
     res.render('dashboard', {
@@ -33,6 +34,8 @@ indexRouter.get('/register', redirectToDashboard, (req, res) => {
         error: '',
     });
 });
+
+indexRouter.post('/register', registerEmployee);
 
 indexRouter.post('/logout', redirectToLogin, logoutEmployee);
 
