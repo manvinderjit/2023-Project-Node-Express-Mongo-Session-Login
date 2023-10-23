@@ -3,9 +3,10 @@ import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-
+import connectDB from './config/mongodb.js';
 import errorHandler from './middleware/errorMw.js';
 import indexRouter from './routes/index.js';
+import mongoose from 'mongoose';
 
 const port = process.env.PORT || 5000;
 const app = new express();
@@ -16,6 +17,8 @@ const staticsPath = fileURLToPath(new URL('public', import.meta.url));
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
+connectDB().catch((err) => console.log(err));
+
 app.use(
     session({
         secret: process.env.ACCESS_TOKEN_SECRET,
@@ -23,7 +26,7 @@ app.use(
         saveUninitialized: false,
         name: process.env.SID,
         store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URL,
+            client: mongoose.connection.getClient(),
             autoRemove: 'native',
             ttl: 60, // 60 seconds
         }),
@@ -35,9 +38,9 @@ app.use(express.static(staticsPath));
 app.use(express.urlencoded({ extended: true }));
 
 // Makes userId available for all routes
-app.use((req, res, next) => {
+app.use((req, res, next) =>{
     const { userId, authorized } = req.session;
-    if (userId && authorized) {
+    if(userId && authorized){
         res.locals.user = userId;
     }
     next();

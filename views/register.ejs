@@ -15,26 +15,26 @@
                 </div>
             <% } %>
               
-                <form method='POST' action="/register" >
-                    <fieldset>
-                        <legend class="mb-4 ">Enter Your Information</legend>
-                        <div class="mb-3">
-                            <label class="form-label" for="email">Email Address: </label>                    
-                            <input class="form-control" type="email" id="email" name="email" required minlength="3" maxlength="30" aria-describedby="emailHelp" value=<%= email %> >                            
-                        </div >
-                        <div class="mb-3">
-                            <label class="form-label" for="password">Password: </label>
-                            <input class="form-control" type="password" id="password" name="password" required>                                   
-                        </div >
-                        <div class="mb-3">
-                            <label class="form-label" for="confirmPassword">Confirm Password: </label>
-                            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>                                   
-                        </div >
-                    </fieldset>
-                    <div class="mb-3  d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Sign Me Up</button>
-                    </div>
-                </form>
+            <form method='POST' action="/register" >
+                <fieldset>
+                    <legend class="mb-4 ">Enter Your Information</legend>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email Address: </label>                    
+                        <input class="form-control" type="email" id="email" name="email" required minlength="3" maxlength="30" aria-describedby="emailHelp" value=<%= email %> >                            
+                    </div >
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password: </label>
+                        <input class="form-control" type="password" id="password" name="password" required>                                   
+                    </div >
+                    <div class="mb-3">
+                        <label class="form-label" for="confirmPassword">Confirm Password: </label>
+                        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>                                   
+                    </div >
+                </fieldset>
+                <div class="mb-3  d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Sign Me Up</button>
+                </div>
+            </form>
             
         </div>
     </main>
