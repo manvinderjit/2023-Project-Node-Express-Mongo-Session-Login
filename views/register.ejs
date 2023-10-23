@@ -1,5 +1,12 @@
 <%- include('./partials/header'); -%>
 
+            <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="register" class="nav-link active" aria-current="page">Register</a></li>        
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        </ul>
+
+      
+    </header>
     <h1><%= title %></h1>    
     <h2><%= error %></h2>
     
@@ -9,8 +16,8 @@
             <fieldset>
                 <legend>Add New Category</legend>
                 <div>
-                    <label for="username">Username: </label>                    
-                    <input type="text" id="username" name="username" required minlength="3" maxlength="30" value=<%= username %>>
+                    <label for="email">Email Address: </label>                    
+                    <input type="text" id="email" name="email" required minlength="3" maxlength="30" value=<%= email %>>
                 </div>
                 <div>
                     <label for="password">Password: </label>
