@@ -2,34 +2,41 @@
 
             <li class="nav-item"><a href="login" class="nav-link">Login</a></li>
             <li class="nav-item"><a href="register" class="nav-link active" aria-current="page">Register</a></li>        
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        </ul>
-
-      
+        </ul>      
     </header>
-    <h1><%= title %></h1>    
-    <h2><%= error %></h2>
-    
-    <div>    
-        <h2>Register Here</h2>
-        <form method='POST' action="">
-            <fieldset>
-                <legend>Add New Category</legend>
-                <div>
-                    <label for="email">Email Address: </label>                    
-                    <input type="text" id="email" name="email" required minlength="3" maxlength="30" value=<%= email %>>
+
+    <main class="flex-shrink-0">
+        <div class="container w-25">
+            
+            <h2 class="mt-5 mb-4 py-3 border-bottom"><%= title %></h2>            
+            <% if(error == '') { '' } else { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
                 </div>
-                <div>
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" name="password" required>                    
-                </div>
-                <div>
-                    <label for="confirmPassword">Confirm Password: </label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>                    
-                </div>
-            </fieldset>
-            <button type="submit">Register</button>
-        </form>
-    </div>
+            <% } %>
+              
+                <form method='POST' action="/register" >
+                    <fieldset>
+                        <legend class="mb-4 ">Enter Your Information</legend>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email Address: </label>                    
+                            <input class="form-control" type="email" id="email" name="email" required minlength="3" maxlength="30" aria-describedby="emailHelp" value=<%= email %> >                            
+                        </div >
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password: </label>
+                            <input class="form-control" type="password" id="password" name="password" required>                                   
+                        </div >
+                        <div class="mb-3">
+                            <label class="form-label" for="confirmPassword">Confirm Password: </label>
+                            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required>                                   
+                        </div >
+                    </fieldset>
+                    <div class="mb-3  d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Sign Me Up</button>
+                    </div>
+                </form>
+            
+        </div>
+    </main>
 
 <%- include('./partials/footer'); -%>
