@@ -23,7 +23,7 @@ app.use(
         saveUninitialized: false,
         name: process.env.SID,
         store: MongoStore.create({
-            mongoUrl: 'mongodb://localhost:27017/my-manager',
+            mongoUrl: process.env.MONGO_URL,
             autoRemove: 'native',
             ttl: 60, // 60 seconds
         }),
