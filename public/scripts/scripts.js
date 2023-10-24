@@ -18,13 +18,20 @@ email.addEventListener('input', (event) => {
 });
 
 password.addEventListener('input', (event) => {
-    if (password.validity.valid && password.value === confirmPassword.value) {
+    if (password.validity.valid) {
         passwordError.textContent = 'Looks Good'; // Reset the content of the message
         password.className = 'form-control is-valid';
         passwordError.className = 'valid-feedback'; // Reset the visual state of the message
-        confirmPasswordError.textContent = 'Looks Good'; // Reset the content of the message
-        confirmPassword.className = 'form-control is-valid';
-        confirmPasswordError.className = 'valid-feedback'; // Reset the visual state of the message
+        
+         if (
+             confirmPassword !== null &&
+             confirmPassword !== undefined &&
+             password.value === confirmPassword.value
+         ) {
+             confirmPasswordError.textContent = 'Looks Good'; // Reset the content of the message
+             confirmPassword.className = 'form-control is-valid';
+             confirmPasswordError.className = 'valid-feedback'; // Reset the visual state of the message
+         }
     } else {
         // If there is still an error, show the correct error
         showPasswordError();
@@ -150,16 +157,18 @@ form.addEventListener('submit', (event) => {
         showPasswordError();
         // Then we prevent the form from being sent by canceling the event
         event.preventDefault();
-    }
-    if (!confirmPassword.validity.valid) {
-        // If it isn't, we display an appropriate error message
-        showConfirmPasswordError();
-        // Then we prevent the form from being sent by canceling the event
-        event.preventDefault();
-    }
-    if(password.value !== confirmPassword.value){
-        showPasswordError();
-        showConfirmPasswordError();
-        event.preventDefault();
+    }    
+    if(confirmPassword !== null && confirmPassword !== undefined){
+        if (!confirmPassword.validity.valid) {
+            // If it isn't, we display an appropriate error message
+            showConfirmPasswordError();
+            // Then we prevent the form from being sent by canceling the event
+            event.preventDefault();
+        }
+        if(password.value !== confirmPassword.value){
+            showPasswordError();
+            showConfirmPasswordError();
+            event.preventDefault();
+        }
     }
 });

@@ -3,6 +3,6 @@ const nocache = async (req, res, next) => {
     res.header('Expires', '-1');
     res.header('Pragma', 'no-cache');
     next();
-}
+};
 
 export default nocache;

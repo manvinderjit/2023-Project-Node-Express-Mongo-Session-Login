@@ -9,13 +9,15 @@ const employeeSchema = new mongoose.Schema(
             lowercase: true,
             trim: true,
             minLength: [5, 'Email must be atleast 5 characters long'],
-            validate:{
-                validator: function(email) {
+            validate: {
+                validator: function (email) {
                     const emailRegex =
                         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                     return emailRegex.test(email);
-                }, message: props => `${props.value} is not a valid email address!`
-            }
+                },
+                message: (props) =>
+                    `${props.value} is not a valid email address!`,
+            },
         },
         password: {
             type: String,
